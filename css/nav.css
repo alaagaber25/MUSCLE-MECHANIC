@@ -1,0 +1,134 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+nav {
+    background-color: rgb(208, 77, 77);
+    padding: 15px 40px;
+    text-transform: uppercase;
+
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul li {
+    padding: 15px 0;
+    cursor: pointer;
+}
+
+nav ul li.items {
+    position: relative;
+    width: auto;
+    margin: 0 16px;
+    text-align: center;
+    order: 3;
+}
+
+nav ul li.items::after {
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 100%;
+    left: 0;
+    bottom: 5px;
+    background: #33ffff;
+    opacity: 0;
+    transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -o-transition: all .2s linear;
+}
+
+nav ul li.items:hover:after {
+    opacity: 1;
+    bottom: 8px;
+}
+
+nav ul li.logo {
+    flex: 1;
+    color: white;
+    font-size: 23px;
+    font-weight: 800;
+    cursor: default;
+    user-select: none;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -ms-transition: .4s;
+    -o-transition: .4s;
+}
+
+nav ul li:hover a {
+    color: cyan;
+}
+
+nav ul li i {
+    color: white;
+    font-size: 23px;
+}
+
+nav ul li.sign-up {
+    margin-right: 20px;
+}
+
+nav ul li.btn {
+    display: none;
+}
+
+nav ul li.btn.hide i:before {
+    content: '\f00d';
+}
+
+@media all and (max-width:1250px) {
+    nav {
+        padding: 5px 20px;
+    }
+
+    nav ul li.items {
+        width: 100%;
+        display: none;
+    }
+
+
+    nav ul li.items.show {
+        display: block;
+    }
+
+    nav ul li.btn {
+        display: block;
+    }
+
+
+    nav ul li.items:hover {
+        box-shadow: inset 0 0 5px #33ffff, inset 0 0 10px #66ffff;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+    }
+
+    nav ul li a {
+        font-size: 15px;
+    }
+
+    nav ul li.items:hover:after {
+        opacity: 0;
+    }
+}

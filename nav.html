@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/nav.css">
+    <!-- Font awesome library -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li class="logo">
+                <i class="fa-solid fa-dumbbell"></i>
+                MUSCLE <span>MECHANIC</span></li>
+            <li class="items">
+                <a class="active" href="#hhome">Home</a>
+            </li>
+            <li class="items">
+                <a href="#abouut">About</a>
+            </li>
+            <li class="items">
+                <a href="#emailcontact">Contact</a>
+            </li>
+            <li class="items">
+                <a href="schedule.html">Schedules</a>
+            </li>
+            <li class="items">
+                <a href="#trainers">Trainers</a>
+            </li>
+            <li class="items">
+                <a href="#myCarouse2">Transformations</a>
+            </li>
+            <li class="items">
+                <a href="#pricesex">Exclusive Training Package</a>
+            </li>
+            <li><a href="signin.html" class="sign-up">SIGN UP</a></li>
+            <li class="btn">
+                <i class="fas fa-bars"></i>
+            </li>
+        </ul>
+    </nav>
+</body>
+<script>
+    $(document).ready(function () {
+        $('.btn').click(function () {
+            $('.items').toggleClass("show");
+            $('ul li').toggleClass("hide");
+        });
+    });
+</script>
+
+</html>

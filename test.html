@@ -1,0 +1,285 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <!-- Render all elements normally -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <!-- Font awesome library -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <!--signin css template-->
+    <link rel="stylesheet" href="css/signin.css">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;0,600;0,800;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/test.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-dumbbell"></i>
+                MUSCLE <span>MECHANIC</span>
+            </a>
+            <nav>
+                <i class="fa-solid fa-bars menu"></i>
+                <ul>
+                    <li><a class="active" href="index.html">Home</a></li>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <h1>he will go to home if you submit a vaild values</h1>
+    <div class="container" style="height: 100vh;">
+        <form id="form" action="/" method="get">
+            <h1>Registration</h1>
+            <div class="input-control">
+                <label for="fusername">First Name</label>
+                <input id="fusername" name="fusername" type="text">
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="lusername">Last Name</label>
+                <input id="lusername" name="lusername" type="text">
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="text">
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password">
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel">
+                <div class="error"></div>
+                <div id="phone_error" class="error hidden">Please enter a valid phone number</div>
+                <div id="phone_success" class="successphone hidden"> valid phone number</div>
+            </div>
+            <div class="input-control">
+                <label for="address">address</label>
+                <input id="address" name="address" type="text">
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <div class="gender-details">
+                    <input type="radio" name="gender" id="male" value="male" required>
+                    <input type="radio" name="gender" id="female" value="female">
+                    <span class="gender-title">Gender</span>
+                    <div class="category">
+                        <label for="male">
+                            <span class="radio one"></span>
+                            <span class="gender">Male</span>
+                        </label>
+                        <label for="female">
+                            <span class="radio two"></span>
+                            <span class="gender">Female</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" onclick="checkButton(), phoneNumberCheck(document.form.phone) ">Sign Up</button>
+            <h3 id="disp" style="color:green"> </h3>
+            <h4 id="error" style="color:red"> </h4>
+        </form>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="content">
+                <div class="logo">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    MUSCLE <span>MECHANIC</span>
+                </div>
+                <p>I'm inspired by champions ,dreamers and achievers</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fa-regular fa-envelope"></i></a>
+                </div>
+                <p class="copyright">&copy;2022<span> MUSCLE MECHANIC</span></p>
+                <p>All Right Reserved to ALaa Gaber Hamada</p>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <script>
+        const form = document.getElementById('form');
+        const fusername = document.getElementById('fusername');
+        const lusername = document.getElementById('lusername');
+        const address = document.getElementById('address');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        // const phone = document.getElementById('phone');
+
+
+
+        form.addEventListener('submit', e => {
+            // e.preventDefault();
+
+            validateInputs();
+        });
+
+        const setError = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = message;
+            inputControl.classList.add('error');
+            inputControl.classList.remove('success')
+        }
+
+        const setSuccess = element => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = '';
+            inputControl.classList.add('success');
+            inputControl.classList.remove('error');
+        };
+
+        const isValidEmail = email => {
+            const re =
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;: \s @ "]+)*)|(". +"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+
+
+        const validateInputs = () => {
+            const fusernameValue = fusername.value.trim();
+            const lusernameValue = lusername.value.trim();
+            const addressValue = address.value.trim();
+            const emailValue = email.value.trim();
+            const passwordValue = password.value.trim();
+            const phoneValue = phone.value.trim();
+            // const phoneLength = phone.toString().length;
+
+            var variable = true;
+
+
+
+            if (fusernameValue === '') {
+                setError(fusername, 'Username is required');
+                variable = false;
+                event.preventDefault();
+
+            } else {
+                setSuccess(fusername);
+            }
+
+            if (lusernameValue === '') {
+                setError(lusername, 'Username is required');
+                variable = false;
+                event.preventDefault();
+            } else {
+                setSuccess(lusername);
+            }
+
+            if (addressValue === '') {
+                setError(address, 'Address is required');
+                variable = false;
+                event.preventDefault();
+            } else {
+                setSuccess(address);
+            }
+
+            if (emailValue === '') {
+                setError(email, 'Email is required');
+                variable = false;
+                event.preventDefault();
+            } else if (!isValidEmail(emailValue)) {
+                setError(email, 'Provide a valid email address');
+                variable = false;
+                event.preventDefault();
+            } else {
+                setSuccess(email);
+            }
+
+            if (passwordValue < 8) {
+                setError(password, 'Your password must be 8 characters');
+                variable = false;
+                event.preventDefault();
+            } else if (passwordValue.search(/[a-z]/) < 0) {
+                setError(password, 'Your password needs a lower case letter');
+                variable = false;
+                event.preventDefault();
+            } else if (passwordValue.search(/[A-Z]/) < 0) {
+                setError(password, 'Your password needs an uppser case letter');
+                variable = false;
+                event.preventDefault();
+            } else if (passwordValue.search(/[0-9]/) < 0) {
+                setError(password, 'Your password needs a number');
+                variable = false;
+                event.preventDefault();
+            } else if (/\s/g.test(passwordValue)) {
+                setError(password, 'Your password must not contain whitespaces ');
+                variable = false;
+                event.preventDefault();
+            } else { // password is OK 
+                setSuccess(password);
+            }
+
+            if (variable == true) {
+                alert('Thank  You For Registration');
+                window.location = "index.html";
+            }
+
+
+        };
+
+
+        function validatePhoneNumber(input_str) {
+            var re = /^[\+]?[(]?[0-9]{4}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/im;
+
+            return re.test(input_str);
+        }
+
+        function validateForm(event) {
+            var phone = document.getElementById('phone').value;
+            if (!validatePhoneNumber(phone)) {
+                document.getElementById('phone_error').classList.remove('hidden');
+                document.getElementById('phone_success').classList.add('hidden');
+
+                setError(phone, 'Invalid Phone Number must be 11 characters ');
+
+            } else {
+                document.getElementById('phone_error').classList.add('hidden');
+                document.getElementById('phone_success').classList.remove('hidden');
+                setSuccess(phone);
+            }
+            event.preventDefault();
+        }
+
+        document.getElementById('form').addEventListener('submit', validateForm);
+
+        function checkButton() {
+            if (document.getElementById('male').checked) {
+                document.getElementById("disp").innerHTML = document.getElementById("male").value +
+                    " radio button is checked";
+            } else if (document.getElementById('female').checked) {
+                document.getElementById("disp").innerHTML = document.getElementById("female").value +
+                    " radio button is checked";
+            } else {
+                document.getElementById("error").innerHTML = "You have not selected any gender";
+            }
+        }
+    </script>
+</body>
+
+</html>
