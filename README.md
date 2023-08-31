@@ -1,2 +1,2 @@
 # alaagaber25.github.io
-this is a webpage builded by html css js 
+this is a web page builder by html css js 
